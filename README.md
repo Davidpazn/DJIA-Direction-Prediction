@@ -50,7 +50,7 @@ Also, 25 indicators have been added to increase predicitve power.
 
 ## Model
 The model is a stacked LSTM with up to four inputs built ontop of the tensorflow API.
-The imputs are:
+The inputs are:
   1. Window of past n-returns (the fwd_return is dropped, since it would cause data leackage).
   2. Topics classified from BERT with Umap as dummy variables
   3. Sentiments on news (readability metrics, polarity...)
