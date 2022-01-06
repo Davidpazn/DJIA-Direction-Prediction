@@ -64,9 +64,11 @@ Surprisingly, the best combination of inputs has been found to be Window of n-re
 ## Tuning
 After the great success accomplished with a stacked LSTM, efforts have been made to optimize the neural network hyperparameters such as: the number of units per layer, layer dropouts, optimizer epsilon and learning rate and batch size. To avoid overffiting, keras-tuner base class Tuner has been overridden in order to add a Blocking Time Series Cross-Validation while optimizing parameters using Bayesian Optimization.
 The results of the cross-validation vary, but top performing configurations get to up to 55-57% average AUC on test-sets. 
-The following image represents how Blocking Time Series Cross-Validation works. The main idea is to avoid data leackage is said to be better for cross-validation than cumulative cross-validation (Sklearn TimeSeriesSplit implemenatation).
+The following image represents how Blocking Time Series Cross-Validation works. The main idea is to avoid data leackage and is said to be better for cross-validation than standard cumulative cross-validation (Sklearn TimeSeriesSplit implemenatation).
 
 ![blocking_time_series_split](https://user-images.githubusercontent.com/70665433/148366364-7f71773b-f613-498d-864c-7004d86c32e5.png)
+
+Train-sets in blue, test-sets in red.
 
 ## Conclusions
 Despite the relatively low AUC attained, it is necessary to point out the fact that the algorithm outperformed the "random" 50% chance up-down model. Another thing to point out is the fact that data lacked. More observations would have been very helpful to the model, since with standard train-test-split, there is exactly a breakpoint where the test-set begins and that may be causing problems in the prediction. However, the performance is good, better than random.
