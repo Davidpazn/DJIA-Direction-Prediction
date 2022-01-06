@@ -28,9 +28,11 @@ Since we have text indexed to a time series, the first step has gone towards cle
 These preprocessings have been used to find relations between words/n-grams and stock market moves, accomplishing relatively good results such as:
 
 Ngrams that only appear when the market goes up:
+
 ![up_ngrams](https://user-images.githubusercontent.com/70665433/148307557-b147c520-d95b-49b8-8306-7ad7461cd59b.png)
 
 Ngrams that only appear when the market goes down:
+
 ![down_ngrams](https://user-images.githubusercontent.com/70665433/148307568-a89bd96f-e116-4c18-a5e4-52a1a323f6ea.png)
 
 Then, these preprocessings (Simple for BERT and ngrams), have been used to find topics from the news. After extensive exploration, no trivial features have been found to be relevant. Hence, the idea to cluster all news using different embeddings so as to find unsupervised topics in news. The optimal number of topics has been found by using a HDP (Hierarchical Dirichlet Process).
