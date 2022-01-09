@@ -18,7 +18,7 @@ sentence-transformers==2.1.0
 spacy==2.2.4
 statsmodels==0.10.2
 # if in colab:
-talib-binary==0.4.19 
+# talib-binary==0.4.19 
 # if in jupyter notebook local:
 ta-lib==0.4.19 
 tensorflow==2.7.0
