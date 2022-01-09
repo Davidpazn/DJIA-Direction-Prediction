@@ -11,6 +11,17 @@ Sun, J. (2016, August). Daily News for Stock Market Prediction, Version 1. Retri
 ## Requirements
 In order to execute these notebooks, the txt file **requirements.txt** file has been provided.
 
+It can be done as follows with conda:
+**conda create --name djia**
+and then,
+**pip3 install -r requirements.txt**
+
+That should be enough to have the environment ready to execute the sripts.
+
+**INFO:** 
+If Colab is being used, uncomment requirements.txt line: `talib-binary==0.4.19`, and comment `ta-lib==0.4.19`
+Otherwise, it should be enough as it is.
+
 ## Demo 
 Can be found in the Demo jupyter notebook.
 Example results are:
