@@ -11,6 +11,12 @@ Sun, J. (2016, August). Daily News for Stock Market Prediction, Version 1. Retri
 ## Requirements
 In order to execute these notebooks, the txt file **requirements.txt** file has been provided.
 
+## Demo 
+Can be found in the Demo jupyter notebook.
+Example results are:
+
+![Screenshot from 2022-01-09 20-17-38](https://user-images.githubusercontent.com/70665433/148698828-fcf9f86a-2c55-47e1-9009-f2fd274266c7.png)
+
 ## Dataset Explanation and Objective
 Find all the Exploratory Data Analysis: 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1ZSGhf5dmb8uKFYgSmhCaaNStj_qXQnuP?usp=sharing)
@@ -72,7 +78,9 @@ Surprisingly, the best combination of inputs has been found to be Window of n-re
 Link to Classic Models code:
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/19RwtJIp1XLp1teisv-yfBdT9Vlx5QeqG?usp=sharing)
 
+Since LSTM models got a good performance, the decision to test with non deep-learning models, was made. The results weren't that bad in the cv, in fact, some actually got 56 AUC. The feature importance was: ![image](https://user-images.githubusercontent.com/70665433/148698100-42c6c854-c9b7-433e-a0dd-2c6b5ad0766b.png)
 
+Meaning, the most important features were the past returns, but to some extent, some topics, one sentiment and one indicator.  When performing K-Bests, the result were all 230 features for best performance. LGBM and RF have been runed using OPTUNA and skopt respectively. Finally, a Voting Classifier with hard and soft decision making were made. Resulting in around 55 AUC on the tet-set. Pretty good performance and faster than LSTMs.
 
 ## Tuning
 Colab Link to Tuning :
@@ -86,12 +94,29 @@ The following image represents how Blocking Time Series Cross-Validation works. 
 
 Train-sets in blue, test-sets in red.
 
+Also, the sliding window option was also added, in order to be able to perform two different types of cv on time series. Both scipts (sliding window and blocking time series) can be found in _src/ts_utils/rnn.py_.
+
 ## Conclusions
 Access Model Comparison and Metric Analysis Notebook in colab:
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1_InNf404L16d-H-e7M4mUOEQvL2-WlzC?usp=sharing)
 
-Despite the relatively low AUC attained, it is necessary to point out the fact that the algorithm outperformed the "random" 50% chance up-down model. Another thing to point out is the fact that data lacked. More observations would have been very helpful to the model, since with standard train-test-split, there is exactly a breakpoint where the test-set begins and that may be causing problems in the prediction. However, the performance is good, better than random.
+Finally, the metric analysis and model comparison. This last notebook, recaps all models built accross the notebook. Since no model seemed to be consistently outperforming a given threshold (or there were lots of bias towards a class), the decision to build a stacking classifier was done. That incorporates the top 2 performing models in the test set, in order to reduce variance and hopefully, improve the AUC. The results have been impressing, leaving a **62 AUC** and **65% accuracy** in out of bag data.
+The ROC curves:
+
+![image](https://user-images.githubusercontent.com/70665433/148698485-a8179835-2bdc-4b34-b876-c05a38fcd776.png)
+
+The Precision Recall Curves:
+
+![image](https://user-images.githubusercontent.com/70665433/148698495-053efac3-5159-4de5-858c-fc0ea0c737cb.png)
+
+Finally, the confusion matrix of the stacking model:
+
+![image](https://user-images.githubusercontent.com/70665433/148698511-b634f4c7-8688-4c64-95b8-55d9727d7ec5.png)
+
+
+The model outperformed the "random" 50% chance up-down model and the always-buy method (out-of-bag enabled for a 56% accuracy with this strategy). 
+When it ocmes to things to improve, data really lacked. More observations would have been very helpful to the model, since with standard train-test-split, there is exactly a breakpoint where the test-set begins and that may be causing problems in the prediction. However, the performance, in the end seems to be really good. 
 
 ## Future work
 In order to improve performance, it could be interesting to try using more specific news. That is, industry specific news. In addition, single stock prediction or indices of industries could very probably be better suited for NLP models. Correlation would be higher and hence, better performance would very possibly be achieved. Also, as stated earlier, more data to train the model should have been presented. That is, in form of other stocks, higher frequency, a larger time frame or build a GAN to generate fake data to train with.
-To improve the model, encoders and decoders could be a good option, also TCNs or other forms of convolutional/recurrent networks.
+To improve the model, encoders and decoders could be a good option, also TCNs or other forms of convolutional/recurrent networks. Also, the stacking model could be further improved by using a neural net to join predictions instead of using XGBClassifier.
