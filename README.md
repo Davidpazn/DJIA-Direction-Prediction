@@ -140,3 +140,6 @@ When it ocmes to things to improve, data really lacked. More observations would 
 ## Future work
 In order to improve performance, it could be interesting to try using more specific news. That is, industry specific news. In addition, single stock prediction or indices of industries could very probably be better suited for NLP models. Correlation would be higher and hence, better performance would very possibly be achieved. Also, as stated earlier, more data to train the model should have been presented. That is, in form of other stocks, higher frequency, a larger time frame or build a GAN to generate fake data to train with.
 To improve the model, encoders and decoders could be a good option, also TCNs or other forms of convolutional/recurrent networks. Also, the stacking model could be further improved by using a neural net to join predictions instead of using XGBClassifier.
+
+## License
+This repository is licensed under GPL-2.0 License. See LICENSE for details.
