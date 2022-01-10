@@ -107,6 +107,15 @@ Train-sets in blue, test-sets in red.
 
 Also, the sliding window option was also added, in order to be able to perform two different types of cv on time series. Both scipts (sliding window and blocking time series) can be found in _src/ts_utils/rnn.py_.
 
+Classic and LSTM CV scores and time to run (google Colab)
+ Model | Time (5 Folds CV) | AUC (Tuned) - CV
+ :---: | :---: | :---: 
+2 Layer LSTM| 1’15s| Up to 58.68 
+3 Layer LSTM | 3’20s | Up to 57.28
+Soft Voting Ensemble: LGBM + RF + XGB | 20s | Up to 56.60
+Hard Voting Ensemble: LGBM + RF + XGB | 21s | Up to 58.25
+
+
 ## Conclusions
 Access Model Comparison and Metric Analysis Notebook in colab:
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1_InNf404L16d-H-e7M4mUOEQvL2-WlzC?usp=sharing)
